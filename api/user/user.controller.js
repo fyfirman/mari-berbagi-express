@@ -8,14 +8,6 @@ exports.createUser = (req, res, next) => {
     return res.status(422).json({ errors: errors.array() })
   }
 
-  if (req.body.password !== req.body.passwordConf) {
-    let err = new Error('Passwords do not match.');
-    res.status(400).json({
-      error: err,
-    });
-    return next(err);
-  }
-
   if (
     req.body.username &&
     req.body.password &&
