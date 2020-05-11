@@ -12,7 +12,7 @@ userSchema.statics = {
   },
 
   getOne: function (query, cb) {
-    this.findOne(query, cb);
+    return this.findOne(query, cb);
   },
 
   update: function (query, updateData, cb) {

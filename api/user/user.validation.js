@@ -6,11 +6,12 @@ exports.validate = (method) => {
     case 'createUser': {
       return [
         body('username')
-          .custom(value => {
-            if (isUsernameExist(value)) {
-              return Promise.reject('Username already in use');
-            }
-            return true
+          .custom(username => {
+            return User.getOne({username : username}).then(user => {
+              if (user) {
+                return Promise.reject(`${user.username} already in use`);
+              }
+            })
           })
           .isLength({ min: 4 })
           .withMessage('Must be at least 4 chars long')
@@ -21,14 +22,4 @@ exports.validate = (method) => {
       ]
     }
   }
-}
-
-isUsernameExist = (username) => {
-  User.get({ username: username }, (err, user) => {
-    if (!err) {
-      return true;
-    } else {
-      return false;
-    }
-  });
 }
