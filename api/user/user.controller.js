@@ -1,5 +1,6 @@
 const User = require("./user.dao");
 const { validationResult } = require('express-validator');
+const bcrypt = require('bcrypt');
 
 exports.createUser = (req, res, next) => {
   const errors = validationResult(req)
@@ -96,3 +97,28 @@ exports.removeUser = function (req, res, next) {
     });
   });
 };
+
+exports.authenticate = function (req, res, next) {
+  User.getOne({ username: req.body.username }, function (err, user) {
+    if (err || !user) {
+      let err = new Error('Wrong email or password');
+      res.status(401).json({
+        error: err,
+      });
+    } else {
+      bcrypt.compare(req.body.password, user.password, (err, result) => {
+        if (result === true) {
+          req.session.userId = user._id;
+          res.json({
+            message: `${user.username} successfully logged in`,
+          });
+        } else {
+          let err = new Error('Wrong email or password');
+          res.status(401).json({
+            error: err,
+          });
+        }
+      });
+    }
+  });
+}

@@ -9,4 +9,6 @@ module.exports = (router) => {
   router.post(routes + "/", validate('createUser'), User.createUser);
   router.put(routes + "/:id", User.updateUser);
   router.delete(routes + "/:id", User.removeUser);
+
+  router.post("/login", User.authenticate)
 };
