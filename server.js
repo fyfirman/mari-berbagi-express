@@ -5,12 +5,14 @@ const bodyParser = require("body-parser");
 const properties = require("./config/properties");
 const db = require("./config/database");
 
+const session = require("express-session")
+
 const userRoutes = require("./api/user/user.routes");
 const app = express();
 
 //configure bodyparser
 const bodyParserJSON = bodyParser.json();
-const bodyParserURLEncoded = bodyParser.urlencoded({extended:true});
+const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
 
 //initialise express router
 const router = express.Router();
@@ -35,8 +37,14 @@ app.use(function (req, res, next) {
   next();
 });
 
+app.use(session({
+  secret: 'mari berbagi kuy',
+  resave: true,
+  saveUninitialized: false
+}));
+
 // use express router
-app.use('/api',router);
+app.use('/api', router);
 userRoutes(router);
 
 app.listen(properties.PORT, (req, res) => {
