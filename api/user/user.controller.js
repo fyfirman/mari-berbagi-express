@@ -11,11 +11,22 @@ exports.createUser = (req, res, next) => {
   if (
     req.body.username &&
     req.body.password &&
-    req.body.passwordConf
+    req.body.passwordConf &&
+    req.body.profile.name &&
+    req.body.profile.address &&
+    req.body.profile.phone &&
+    req.body.profile.email
   ) {
     let user = {
       username: req.body.username,
       password: req.body.password,
+      profile: {
+        name: req.body.profile.name,
+        address: req.body.profile.address,
+        phone: req.body.profile.phone,
+        email: req.body.profile.email,
+        profile_picture: req.body.profile.profile_picture
+      },
     };
 
     User.create(user, (err, user) => {
