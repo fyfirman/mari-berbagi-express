@@ -21,9 +21,18 @@ const Stuff = new Schema({
     enum: ['New', 'Former'],
     required: true
   },
-  address: { type: String },
-  is_cod: { type: Boolean },
-  postal_fee: { type: String },
+  address: {
+    type: String,
+    required: true
+  },
+  is_cod: {
+    type: Boolean,
+    required: true
+  },
+  postal_fee: {
+    type: Boolean,
+    required: true
+  },
   owner_id: { type: Schema.Types.ObjectId, ref: 'User' },
   timestamps: true
 });
