@@ -8,6 +8,7 @@ const db = require("./config/database");
 const session = require("express-session")
 
 const userRoutes = require("./api/user/user.routes");
+const stuffRoutes = require("./api/stuff/stuff.routes");
 const app = express();
 
 //configure bodyparser
@@ -46,6 +47,7 @@ app.use(session({
 // use express router
 app.use('/api', router);
 userRoutes(router);
+stuffRoutes(router);
 
 app.listen(properties.PORT, (req, res) => {
   console.log(`Server is running on ${properties.PORT} port.`);

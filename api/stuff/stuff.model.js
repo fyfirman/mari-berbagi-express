@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Stuff = new Schema({
+const StuffSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -18,7 +18,7 @@ const Stuff = new Schema({
   },
   condition: {
     type: String,
-    enum: ['New', 'Former'],
+    enum: ['new', 'former'],
     required: true
   },
   address: {
@@ -33,8 +33,9 @@ const Stuff = new Schema({
     type: Boolean,
     required: true
   },
-  owner_id: { type: Schema.Types.ObjectId, ref: 'User' },
-  timestamps: true
-});
+  owner_id: { type: Schema.Types.ObjectId, ref: 'User' }
+},
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Stuff', Stuff);
+module.exports = StuffSchema;
