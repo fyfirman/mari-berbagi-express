@@ -41,6 +41,14 @@ exports.createUser = (req, res, next) => {
       }
     });
   }
+  else {
+    res.status(400).json({
+      error:{
+        status: 400,
+        message: `Required field is not set`,
+      }
+    });
+  }
 };
 
 exports.getUsers = (req, res, next) => {
