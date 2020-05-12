@@ -5,4 +5,5 @@ const routes = "/stuff";
 
 module.exports = (router) => {
   router.post(routes + "/", Stuff.createStuff);
+  router.get(routes + "/", Stuff.getStuffs);
 };

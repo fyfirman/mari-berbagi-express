@@ -36,7 +36,20 @@ exports.createStuff = (req, res, next) => {
       }
     })
   }
-
-
-
 }
+
+exports.getStuffs = (req, res, next) => {
+  Stuff.get({}, (err, stuffs) => {
+    if (!err) {
+      res.json({
+        status: 200,
+        Stuff: stuffs,
+      });
+    } else {
+      res.status(400).json({
+        status: 400,
+        error: err,
+      });
+    }
+  });
+};
