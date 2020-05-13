@@ -11,10 +11,6 @@ const userRoutes = require("./api/user/user.routes");
 const stuffRoutes = require("./api/stuff/stuff.routes");
 const app = express();
 
-//configure bodyparser
-const bodyParserJSON = bodyParser.json();
-const bodyParserURLEncoded = bodyParser.urlencoded({ extended: true });
-
 //initialise express router
 const router = express.Router();
 
@@ -23,11 +19,11 @@ db();
 
 // configure app.use()
 app.use(log);
-app.use(bodyParserJSON);
-app.use(bodyParserURLEncoded);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Error handling
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
