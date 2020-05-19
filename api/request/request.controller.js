@@ -15,7 +15,7 @@ exports.createRequest = (req, res, next) => {
       address: req.body.address,
       is_cod: req.body.is_cod,
       postal_fee: req.body.postal_fee,
-      status: req.body.status,
+      status: "waiting",
       requestor_id: req.body.requestor_id,
       stuff_id: req.body.stuff_id
     }
