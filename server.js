@@ -19,6 +19,7 @@ db();
 
 // configure app.use()
 app.use(log);
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

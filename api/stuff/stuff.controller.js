@@ -12,7 +12,7 @@ exports.createStuff = (req, res, next) => {
     let stuff = {
       name: req.body.name,
       description: req.body.description,
-      picture: req.body.picture,
+      picture: req.file.path,
       status: req.body.status,
       amount: req.body.amount,
       condition: req.body.condition,
@@ -27,6 +27,7 @@ exports.createStuff = (req, res, next) => {
         res.json({
           status: 200,
           message: `Stuff with ${stuff.name} created successfully`,
+          stuff: stuff
         });
       } else {
         res.status(400).json({
