@@ -1,6 +1,5 @@
 const Stuff = require("./stuff.controller");
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/' })
+const upload = require("./stuff.upload")
 // const { validate } = require("./stuff.validation");
 
 const routes = "/stuff";
