@@ -124,6 +124,7 @@ exports.authenticate = function (req, res, next) {
         if (result === true) {
           req.session.userId = user._id;
           res.json({
+            status: 'authenticated',
             message: `${user.username} successfully logged in`,
           });
         } else {
