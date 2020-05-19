@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const Request = new Schema({
+const RequestSchema = new Schema({
   _id: { type: String },
   reason: { type: String },
   amount: { type: Number },
@@ -18,4 +18,4 @@ const Request = new Schema({
   { timestamps: true }
 );
 
-module.exports = mongoose.model('Request', Request);
+module.exports = RequestSchema;

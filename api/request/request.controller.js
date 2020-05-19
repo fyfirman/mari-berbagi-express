@@ -37,7 +37,7 @@ exports.createRequest = (req, res, next) => {
   }
 }
 
-exports.getRequest = (req, res, next) => {
+exports.getRequests = (req, res, next) => {
   Request.get({}, (err, requests) => {
     if (!err) {
       res.json({

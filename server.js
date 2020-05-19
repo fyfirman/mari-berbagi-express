@@ -9,13 +9,14 @@ const session = require("express-session")
 
 const userRoutes = require("./api/user/user.routes");
 const stuffRoutes = require("./api/stuff/stuff.routes");
+const requestRoutes = require("./api/request/request.routes");
 const app = express();
 
 //initialise express router
 const router = express.Router();
 
 // call the database connectivity function
-db();
+db(); 
 
 // configure app.use()
 app.use(log);
@@ -45,6 +46,7 @@ app.use(session({
 app.use('/api', router);
 userRoutes(router);
 stuffRoutes(router);
+requestRoutes(router);
 
 app.listen(properties.PORT, (req, res) => {
   console.log(`Server is running on ${properties.PORT} port.`);
