@@ -38,17 +38,35 @@ exports.createRequest = (req, res, next) => {
 }
 
 exports.getRequests = (req, res, next) => {
-  Request.get({}, (err, requests) => {
-    if (!err) {
-      res.json({
-        status: 200,
-        Request: requests,
-      });
-    } else {
-      res.status(400).json({
-        status: 400,
-        error: err,
-      });
-    }
-  });
+  if (!req.query.requestor_id) {
+    Request.get({}, (err, requests) => {
+      if (!err) {
+        res.json({
+          status: 200,
+          Request: requests,
+        });
+      } else {
+        res.json({
+          status: 400,
+          error: err,
+        });
+      }
+    });
+  } else {
+    Request.get({
+      requestor_id: req.query.requestor_id
+    }, (err, requests) => {
+      if (!err) {
+        res.json({
+          status: 200,
+          Request: requests,
+        });
+      } else {
+        res.json({
+          status: 400,
+          error: err,
+        });
+      }
+    });
+  }
 };
