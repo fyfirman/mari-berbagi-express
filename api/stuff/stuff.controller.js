@@ -54,3 +54,17 @@ exports.getStuffs = (req, res, next) => {
     }
   });
 };
+
+exports.getStuff = (req, res, next) => {
+  Stuff.get({ _id: req.params.id }, (err, user) => {
+    if (!err) {
+      res.json({
+        User: user,
+      });
+    } else {
+      res.status(400).json({
+        error: err,
+      });
+    }
+  });
+}

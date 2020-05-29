@@ -7,4 +7,5 @@ const routes = "/stuff";
 module.exports = (router) => {
   router.post(routes + "/", upload.single('picture'), Stuff.createStuff);
   router.get(routes + "/", Stuff.getStuffs);
+  router.get(routes + "/:id", Stuff.getStuff);
 };
