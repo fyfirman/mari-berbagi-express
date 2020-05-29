@@ -40,19 +40,35 @@ exports.createStuff = (req, res, next) => {
 }
 
 exports.getStuffs = (req, res, next) => {
-  Stuff.get({}, (err, stuffs) => {
-    if (!err) {
-      res.json({
-        status: 200,
-        Stuff: stuffs,
-      });
-    } else {
-      res.status(400).json({
-        status: 400,
-        error: err,
-      });
-    }
-  });
+  if (!req.query.owner_id) {
+    Stuff.get({}, (err, stuffs) => {
+      if (!err) {
+        res.json({
+          status: 200,
+          Stuff: stuffs,
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          error: err,
+        });
+      }
+    });
+  } else {
+    Stuff.get({ owner_id: req.query.owner_id }, (err, stuffs) => {
+      if (!err) {
+        res.json({
+          status: 200,
+          Stuff: stuffs,
+        });
+      } else {
+        res.status(400).json({
+          status: 400,
+          error: err,
+        });
+      }
+    });
+  }
 };
 
 exports.getStuff = (req, res, next) => {
