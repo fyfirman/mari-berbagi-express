@@ -24,7 +24,7 @@ exports.createRequest = (req, res, next) => {
       if (!err) {
         res.json({
           status: 200,
-          message: `Request with ${request.name} created successfully`,
+          message: `Request created successfully`,
           request: request
         });
       } else {
