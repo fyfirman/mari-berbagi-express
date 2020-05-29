@@ -12,7 +12,7 @@ stuffSchema.statics = {
   },
 
   update: function (query, updateData, cb) {
-    this.findOneAndUpdate(query, { $set: updateData }, { new: true }, cb);
+    this.findOneAndUpdate(query, updateData, { new: true }, cb);
   },
 
   delete: function (query, cb) {
