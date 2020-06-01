@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const properties = require("./config/properties");
 const db = require("./config/database");
 
+const cors = require('cors');
+
 const session = require("express-session")
 
 const userRoutes = require("./api/user/user.routes");
@@ -16,10 +18,11 @@ const app = express();
 const router = express.Router();
 
 // call the database connectivity function
-db(); 
+db();
 
 // configure app.use()
 app.use(log);
+app.use(cors());
 app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -48,6 +51,6 @@ userRoutes(router);
 stuffRoutes(router);
 requestRoutes(router);
 
-app.listen(properties.PORT, (req, res) => {
+app.listen(properties.PORT, '0.0.0.0', (req, res) => {
   console.log(`Server is running on ${properties.PORT} port.`);
 });
