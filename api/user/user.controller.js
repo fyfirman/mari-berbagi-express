@@ -46,7 +46,7 @@ exports.createUser = (req, res, next) => {
   }
   else {
     res.status(400).json({
-      error:{
+      error: {
         status: 400,
         message: `Required field is not set`,
       }
@@ -115,9 +115,8 @@ exports.removeUser = function (req, res, next) {
 exports.authenticate = function (req, res, next) {
   User.getOne({ username: req.body.username }, function (err, user) {
     if (err || !user) {
-      let err = new Error('Wrong email or password');
       res.status(401).json({
-        error: err,
+        message: 'Wrong email or password'
       });
     } else {
       bcrypt.compare(req.body.password, user.password, (err, result) => {
@@ -128,9 +127,8 @@ exports.authenticate = function (req, res, next) {
             message: `${user.username} successfully logged in`,
           });
         } else {
-          let err = new Error('Wrong email or password');
           res.status(401).json({
-            error: err,
+            message: 'Wrong email or password'
           });
         }
       });
