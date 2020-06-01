@@ -125,6 +125,7 @@ exports.authenticate = function (req, res, next) {
           res.json({
             status: 'authenticated',
             message: `${user.username} successfully logged in`,
+            user: user
           });
         } else {
           res.status(401).json({
