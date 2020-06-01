@@ -9,7 +9,7 @@ const RequestSchema = new Schema({
   postal_fee: { type: Number },
   status: {
     type: String,
-    enum: ['paid', 'not yet paid', 'waiting', 'rejected']
+    enum: ['done','sent','paid', 'not yet paid', 'waiting', 'rejected']
   },
   requestor_id: { type: Schema.Types.ObjectId, ref: 'User' },
   stuff_id: { type: Schema.Types.ObjectId, ref: 'Stuff' },
