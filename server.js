@@ -2,6 +2,8 @@ const express = require("express");
 const log = require('morgan')('dev');
 const bodyParser = require("body-parser");
 
+require('dotenv').config();
+
 const properties = require("./config/properties");
 const db = require("./config/database");
 
