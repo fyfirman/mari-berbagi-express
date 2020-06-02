@@ -1,4 +1,4 @@
 module.exports = {
   PORT: 4000,
-  DB: "mongodb://localhost:27017/mari-berbagi",
+  DB: "mongodb+srv://admin:mariberbagi@mari-berbagi-yto6h.mongodb.net/test?retryWrites=true&w=majority",
 };
